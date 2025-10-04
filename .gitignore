@@ -1,0 +1,19 @@
+# SQLite database file
+sqlite.db
+
+# PHP session files (if any)
+*.sess
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node.js / frontend (if any)
+node_modules/
+
+# Composer dependencies (if used)
+vendor/
+
+# Logs and temporary files
+*.log
+*.tmp
