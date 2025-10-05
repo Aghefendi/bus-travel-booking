@@ -1,0 +1,85 @@
+.button {
+    display: inline-block;
+    height: 53px;
+    border-radius: 27px;
+    overflow: hidden;
+    z-index: 1;
+    margin-top: 10px;
+    position: relative;
+    width: 100%; /* Form genişliğine uyması için */
+    text-align: center; /* Butonu ortalamak için */
+}
+
+.button_bcg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, #fa9e1b, #8d4fff, #fa9e1b);
+    z-index: -1;
+    transition: all 400ms ease;
+}
+
+.button:hover .button_bcg {
+    left: -100%;
+}
+
+.button button {
+    display: block;
+    width: 100%; /* Kapsayıcıya tam oturması için */
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: transparent; /* Arkaplanı şeffaf yap */
+    border: none; /* Kenarlığı kaldır */
+    text-transform: uppercase;
+    line-height: 53px;
+    padding: 0; /* Padding'i sıfırla */
+    white-space: nowrap;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.button span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 5.75px;
+    height: 5.63px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    margin-right: 2px;
+}
+
+.button span:first-child {
+    margin-left: 10px;
+}
+
+.button span:nth-child(2) {
+    opacity: 0.6;
+}
+
+.button span:last-child {
+    opacity: 0.4;
+    margin-right: 0px;
+}
+
+/* Buton Renkleri */
+.button_color_2 {
+    color: #fa9e1b;
+    /* Bu class zaten arkaplanı .button_bcg'den aldığı için ek bir renk gerekmiyor */
+}
+
+.button.button-small {
+    width: auto; /* Genişliği içeriğine göre otomatik ayarla (EN ÖNEMLİ KURAL) */
+    height: 40px; /* Yüksekliği biraz azaltarak daha zarif hale getirelim */
+    margin: 0;    /* Tablo hücresi içindeki varsayılan boşlukları sıfırla */
+    display: inline-block; /* Diğer elementlerle yan yana durabilmesini sağla */
+}
+
+/* Küçük butonun içindeki yazının ve noktaların yeni yüksekliğe uyum sağlaması için */
+.button.button-small button {
+    line-height: 40px; /* Yeni yüksekliğe göre metni dikeyde ortala */
+    padding-left: 25px;  /* İç boşlukları biraz azalt */
+    padding-right: 25px;
+}

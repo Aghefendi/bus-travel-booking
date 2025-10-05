@@ -1,0 +1,73 @@
+
+
+
+/*********************************
+14. Copyright
+*********************************/
+
+.copyright
+{
+	
+    border-radius: 30px;
+
+      width: 80%;
+    max-width: 1050; /* Added max-width for better control on large screens */
+    margin: 20px auto;
+               padding: 3px 3px;
+                line-height: 1;
+                padding: 5px;
+                box-sizing: border-box;
+			
+
+}
+.copyright_content
+{
+	 height: auto; 
+    display:flex;
+    align-items: center; /* dikey ortala */
+    justify-content: space-between; 
+}
+.copyright_content div
+{
+	font-size: 15px;
+	font-weight: 600;
+	color: #ffffff;
+}
+.footer_nav_container
+{
+	height: 52px;
+}
+
+	
+
+.footer_nav_list
+{
+display: flex;
+    gap: 20px; /* aradaki boşluk */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+.footer_nav_item
+{
+	display: flex;
+	margin-right: 40px;
+}
+.footer_nav_item a
+{
+	font-size: 15px;
+	font-weight: 600;
+	color: #fcf7ff;
+	text-transform: uppercase;
+	line-height: 2;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.footer_nav_item a:hover
+{
+	color: #FFFFFF;
+}

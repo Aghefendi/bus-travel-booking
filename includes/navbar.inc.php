@@ -2,30 +2,29 @@
 
 session_start();
 ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/index.php">Otobüs</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/welcome.php">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout.php">Logout</a>
-                </li>
-            <?php else: ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register.php">Register</a>
-                </li>
-            <?php endif; ?>
-        </ul>
+
+
+
+
+<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                <div class="logo_container">
+                    <div class="logo"><a href="#"><img src="../assets/images/logo.png" alt="">travelix</a></div>
+                </div>
+                <div class="main_nav_container ml-auto">
+                    <ul class="main_nav_list">
+                        <li class="main_nav_item "><a href="../dashboard.php">Anasayfa</a></li>
+                        <li class="main_nav_item"><a href="../register.php">Kayıt</a></li>
+                        <li class="main_nav_item"><a href="../login.php">Giriş</a></li>
+
+                        <li class="main_nav_item"><a href="../contact.php">İletişim</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 </nav>
-<?php

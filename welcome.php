@@ -16,13 +16,18 @@ if (!isset($_SESSION["user_id"])) {
 <?php include 'includes/secureSession.inc.php'; ?>
 
 <body>
-    <?php include 'includes/navbar.inc.php'; ?>
-    <div class="container">
-        <h1 class="mt-5">Hoş Geldin, <?= htmlspecialchars($_SESSION["name"]); ?>!</h1>
-        <p>Başarıyla giriş yaptınız.</p>
-        <p>Email adresiniz: <?= htmlspecialchars($_SESSION["email"]); ?></p>
-        <p><a href="logout.php" class="btn btn-danger">Çıkış Yap</a></p>
+    <div class="super_container">
+        <div class="header">
+            <?php include 'includes/navbar.inc.php'; ?>
+            <div class="container">
+                <h1 class="mt-2">Hoş Geldin, <?= htmlspecialchars($_SESSION["name"]); ?>!</h1>
+                <p>Başarıyla giriş yaptınız.</p>
+                <p>Email adresiniz: <?= htmlspecialchars($_SESSION["email"]); ?></p>
+                <p><a href="logout.php" class="btn btn-danger">Çıkış Yap</a></p>
+            </div>
+        </div>
     </div>
+    <?php include './includes/footer.inc.php'; ?>
 </body>
 
 </html>

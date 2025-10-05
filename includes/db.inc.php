@@ -1,7 +1,6 @@
 <?php
 
 $db = new SQLite3("./sirket.db");
-// TABLO YAPISI GÜNCELLENDİ: full_name ve role sütunları eklendi.
 $db->exec("CREATE TABLE IF NOT EXISTS User (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name TEXT NOT NULL,

@@ -1,0 +1,137 @@
+.register-form-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px 50px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+/* Form başlığı "Kayıt Ol" */
+.register-form-container h2 {
+    text-align: center;
+    color: #343a40; /* Koyu gri, daha okunabilir */
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Her bir form elemanını (label + input) gruplayan alan */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* "İsim Soyisim", "Email" gibi etiketler */
+.form-group label {
+    color: #495057; /* Biraz daha yumuşak bir gri */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Girdi alanları (input) */
+.form-control {
+    background-color: #f8f9fa; /* Hafif kirli beyaz arka plan */
+    border: 1px solid #ced4da; /* Belirgin kenarlık */
+    border-radius: 8px; /* Yumuşak köşeler */
+    color: #212529; /* Metin rengi */
+    font-size: 16px;
+    height: 50px;
+    padding: 10px 15px;
+    width: 100%;
+    box-sizing: border-box; /* Padding'in genişliği etkilememesi için */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Bir girdi alanına tıklandığında (focus) */
+.form-control:focus {
+    outline: none;
+    border-color: #fa9e1b; /* temanızın turuncu rengi */
+    box-shadow: 0 0 0 3px rgba(250, 158, 27, 0.25); /* Turuncu bir hale */
+}
+
+/* Hata mesajı kutusu */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+}
+
+/* Kayıt ol butonunun üstündeki boşluk */
+.button {
+    margin-top: 25px;
+}
+
+.results-container {
+    max-width: 900px; /* Arama kartıyla aynı genişlikte olması için */
+    margin: 40px auto 60px auto; /* Üst ve alt boşluklar */
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 50px -10px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e9ecef;
+    overflow: hidden; /* Tablonun köşelerinin karttan taşmasını engeller */
+}
+
+/* "Uygun Seferler" başlığı */
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Hafif gri başlık arkaplanı */
+    border-bottom: 1px solid #dee2e6;
+}
+
+.results-header h4 {
+    color: #343a40;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.results-header i {
+    color: #fa9e1b;
+    font-size: 20px;
+}
+
+/* Arama sonucu bulunamadığında gösterilecek mesaj alanı */
+.no-results {
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.no-results i {
+    font-size: 48px;
+    color: #adb5bd;
+    margin-bottom: 20px;
+}
+
+.no-results p {
+    font-size: 1.1rem;
+    color: #343a40;
+    font-weight: 600;
+    margin: 0;
+}
+
+.no-results span {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: block;
+    margin-top: 8px;
+}
+
+/* Tablonun kendisi için ek ayarlar */
+.results-container .custom-table {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}

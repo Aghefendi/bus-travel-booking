@@ -1,0 +1,57 @@
+.search-card {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 50px -10px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e9ecef;
+}
+
+.search-card h3 {
+    text-align: center;
+    color: #343a40;
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+/* Inputları ve butonu yatayda dizen satır */
+.search-form-row {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlar için alt satıra geçmeyi sağlar */
+    gap: 20px;
+    align-items: flex-end; /* Elemanları alt çizgide hizalar */
+}
+
+/* Her bir input ve label'ı içeren grup */
+.search-form-group {
+    flex: 1; /* Mevcut alana yayılmasını sağlar */
+    min-width: 200px; /* Küçüldüğünde minimum genişlik */
+}
+
+/* İkon ve input'u içeren kapsayıcı */
+.input-with-icon {
+    position: relative;
+}
+
+/* Girdi alanlarının içindeki ikonlar */
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd;
+    font-size: 18px;
+}
+
+/* İkonlu input'ların özel padding'i */
+.input-with-icon .form-control {
+    padding-left: 45px;
+}
+
+/* Arama butonunun genişliği ve hizalaması */
+.search-form-row .button {
+    width: 180px;
+    margin: 0; /* Üstteki boşluğu sıfırla */
+}

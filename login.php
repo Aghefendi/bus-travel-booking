@@ -35,31 +35,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <html>
 
-<?php $title = "Login System"; ?>
+<?php $title = "Giriş"; ?>
 <?php include 'includes/secureSession.inc.php'; ?>
 <?php include 'includes/head.inc.php'; ?>
 
 <body>
+
     <?php include 'includes/navbar.inc.php'; ?>
 
     <div class="container">
-        <h2 class="mt-5">Login</h2>
-        <?php if (isset($_GET['error'])): ?>
-            <div class="alert alert-danger">Email veya şifre yanlış!</div>
-        <?php endif; ?>
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <p class="mt-3">Hesabınız yok mu? <a href="register.php">Kayıt Ol</a></p>
+        <div class="register-form-container">
+            <h2 class="mt-5">Login</h2>
+            <?php if (isset($_GET['error'])): ?>
+                <div class="alert alert-danger">Email veya şifre yanlış!</div>
+            <?php endif; ?>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="button button_color_2">
+                    <div class="button_bcg"></div>
+                    <button type="submit">
+                        Giriş Yap
+                    </button>
+                </div>
+            </form>
+            <p class="mt-3">Hesabınız yok mu? <a href="register.php">Kayıt Ol</a></p>
+
+        </div>
     </div>
+    <?php include './includes/footer.inc.php'; ?>
+
 </body>
 
 

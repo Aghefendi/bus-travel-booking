@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
             if ($result) {
-                header('Location: login.php'); 
+                header('Location: login.php');
                 exit();
             } else {
                 $error = 'Kayıt sırasında hata.';
@@ -68,45 +68,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <html>
 
-<?php $title = "Register"; ?>
-<?php include 'includes/head.inc.php'; ?>
+<?php $title = "Kayıt"; ?>
+<?php include './includes/head.inc.php'; ?>
 <?php include 'includes/secureSession.inc.php'; ?>
 
 <body>
+
     <?php include 'includes/navbar.inc.php'; ?>
 
     <div class="container">
-        <h2 class="mt-5">Register</h2>
-
-        <?php if ($error): ?>
-            <div class="alert alert-danger">
-                <?= $error ?>
-            </div>
-        <?php endif; ?>
+        <div class="register-form-container">
+            <h2 class="mt-5">Kayıt ol</h2>
 
 
+            <?php if ($error): ?>
+                <div class="alert alert-danger">
+                    <?= $error ?>
+                </div>
+            <?php endif; ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-            <div class="form-group">
-
-                <label for="name">Name:</label>
 
 
-                <input type="text" class="form-control" id="name" name="name">
-            </div>
-            <div class="form-group">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                <div class="form-group">
 
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
+                    <label for="name">İsim:</label>
 
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="button button_color_2">
+                    <div class="button_bcg"></div>
+                    <button type="submit">
+                        Kayıt Ol
+                    </button>
+                </div>
+            </form>
+
+        </div>
     </div>
+    <?php include './includes/footer.inc.php'; ?>
+
+
+
 </body>
 
 </html>
