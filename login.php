@@ -1,7 +1,8 @@
 <?php
 require_once './includes/db.inc.php';
+require_once './includes/secureSession.inc.php';
 
-session_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function test_input($data)
@@ -11,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = htmlspecialchars($data);
         return $data;
     }
+
+
 
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
@@ -24,10 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["email"] = $user["email"];
         $_SESSION["name"] = $user["full_name"];
-        header("Location: welcome.php");
+        $_SESSION["role"] = $user["role"];
+
+        header("Location: index.php");
         exit();
     } else {
-        header("Location: login.php?error=1");
+        header("Location: login.php?error=invalid_credentials");
         exit();
     }
 }
@@ -36,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <?php $title = "Giriş"; ?>
-<?php include 'includes/secureSession.inc.php'; ?>
-<?php include 'includes/head.inc.php'; ?>
+<?php include './includes/secureSession.inc.php'; ?>
+<?php include './includes/head.inc.php'; ?>
 
 <body>
 
@@ -46,8 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="register-form-container">
             <h2 class="mt-5">Login</h2>
-            <?php if (isset($_GET['error'])): ?>
-                <div class="alert alert-danger">Email veya şifre yanlış!</div>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'login_required'): ?>
+                <div class="alert alert-warning">
+                    Lütfen giriş yapın!
+                </div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials'): ?>
+                <div class="alert alert-danger">
+                    Email veya şifre yanlış!
+                </div>
             <?php endif; ?>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
                 <div class="form-group">

@@ -3,6 +3,7 @@
 
 <?php $title = "İletişim"; ?>
 <?php include './includes/head.inc.php'; ?>
+<?php require_once './includes/secureSession.inc.php'; ?>
 
 <body>
 

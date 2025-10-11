@@ -1,18 +1,15 @@
 <?php
 
-session_start();
+
 
 
 require_once './includes/secureSession.inc.php';
 
 
-if (isset($_SESSION["user_id"]) && $_SESSION["user_id"]) {
-    header("Location: welcome.php");
-    exit();
-}
 
 
-require_once 'includes/db.inc.php';
+
+require_once './includes/db.inc.php';
 
 $searchResults = null;
 
