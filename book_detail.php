@@ -59,16 +59,7 @@ $departure = new DateTime($trip['departure_time']);
 
                         <td><?= htmlspecialchars($trip['capacity']) ?></td>
                         <td><?= htmlspecialchars($trip['price']) ?> ₺
-                        <td style='text-align: center;'>
-                            <form method='post' action='bilet_buy.php' style='margin: 0;'>
-                                <input type='hidden' name='id' value='" . htmlspecialchars($row[' id']) . "'>
-                                        <div class='button button_color_2 button-small'>
-                                            <div class='button_bcg'></div>
-                                            <button type='submit'>Bilet AL</button>
-                                        </div>
-                                    </form> 
-                                  </td
-                        </td>
+
 
 
                     </tr>

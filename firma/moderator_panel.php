@@ -86,6 +86,24 @@ $searchResults = $stmt->execute();
                     </div>
                 </form>
               </td>";
+                            echo "<td style='text-align: center;'>
+                <form method='get' action='./update_trip.php' style='margin:0;'>
+                    <input type='hidden' name='update_trip_id' value='" . htmlspecialchars($row['id']) . "'>
+                    <div class='button button_color_2 button-small'>
+                        <div class='button_bcg'></div>
+                        <button type='submit'>Güncelle</button>
+                    </div>
+                </form>
+              </td>";
+                            echo "<td style='text-align: center;'>
+                <form method='get' action='./firma_detail.php' style='margin:0;'>
+                    <input type='hidden' name='firma_detail_id' value='" . htmlspecialchars($row['id']) . "'>
+                    <div class='button button_color_2 button-small'>
+                        <div class='button_bcg'></div>
+                        <button type='submit'>Detail</button>
+                    </div>
+                </form>
+              </td>";
 
                             echo "</tr>";
                         }

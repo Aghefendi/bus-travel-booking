@@ -9,7 +9,7 @@ session_start([
     "cookie_lifetime" => 0,
     "cookie_httponly" => true,
     "cookie_samesite" => "Strict",
-    "cookie_secure" => false, //test için false
+    "cookie_secure" => true, //test için false
     "use_only_cookies" => true,
 
 

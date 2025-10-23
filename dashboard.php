@@ -108,6 +108,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </div>
                                     </form> 
                                   </td>";
+
+
+                            if ($_SESSION['role'] === 'user'):
+                                echo "<td style='text-align: center;'>
+                                    <form method='post' action='bilet_buy.php' style='margin: 0;'>
+                                        <input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>
+                                        <div class='button button_color_2 button-small'>
+                                            <div class='button_bcg'></div>
+                                            <button type='submit'>Bilet al</button>
+                                        </div>
+                                    </form> 
+                                  </td>";
+                            endif;
+
                             echo "</tr>";
                         }
                     }

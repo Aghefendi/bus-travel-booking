@@ -1,7 +1,7 @@
 <?php
 require_once './includes/db.inc.php';
 require_once './includes/secureSession.inc.php';
-
+require_once './rehash_plaintext.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -13,7 +13,7 @@ try {
             role TEXT NOT NULL DEFAULT 'user'
         )
     ");
-
+    $db->exec('PRAGMA foreign_keys = ON;');
 
 } catch (Exception $e) {
     die("Veritabanı hatası: " . $e->getMessage());
