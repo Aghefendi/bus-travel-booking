@@ -139,6 +139,8 @@ chmod 777 database/database.sqlite
 └── README.md
 ---
 
+```
+
 ## 📸 Ekran Görüntüleri
 
 <table align="center">
@@ -162,4 +164,9 @@ chmod 777 database/database.sqlite
 
 **Agâh**
 Full-stack geliştirici & siber güvenlik meraklısı
+
+```
+
+
+
 ```
