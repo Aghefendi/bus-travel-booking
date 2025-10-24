@@ -95,34 +95,37 @@ chmod 777 database/database.sqlite
 ## 📂 Project Structure
 
 .
+
+```text
+.
 ├── admin/
-│ ├── add_company.php
-│ ├── update_company.php
-│ ├── company_detail.php
-│ ├── add_company_admin.php
-│ ├── manage_users.php
-│ └── admin_dashboard.php
+│   ├── add_company.php
+│   ├── update_company.php
+│   ├── company_detail.php
+│   ├── add_company_admin.php
+│   ├── manage_users.php
+│   └── admin_dashboard.php
 │
 ├── firma/
-│ ├── add_trip.php
-│ ├── update_trip.php
-│ ├── firma_detail.php
-│ └── moderator_panel.php
+│   ├── add_trip.php
+│   ├── update_trip.php
+│   ├── firma_detail.php
+│   └── moderator_panel.php
 │
 ├── user/
-│ ├── my_ticket.php
-│ ├── cancel_ticket.php
-│ └── user_home.php
+│   ├── my_ticket.php
+│   ├── cancel_ticket.php
+│   └── user_home.php
 │
 ├── includes/
-│ ├── db.inc.php
-│ ├── secureSession.inc.php
-│ ├── head.inc.php
-│ ├── navbar.inc.php
-│ └── footer.inc.php
+│   ├── db.inc.php
+│   ├── secureSession.inc.php
+│   ├── head.inc.php
+│   ├── navbar.inc.php
+│   └── footer.inc.php
 │
 ├── database/
-│ └── sirket.db
+│   └── sirket.db
 │
 ├── docker-compose.yml
 ├── Dockerfile
@@ -134,7 +137,6 @@ chmod 777 database/database.sqlite
 ├── register.php
 ├── login.php
 └── README.md
-
 ---
 
 ## 📸 Ekran Görüntüleri
@@ -158,5 +160,6 @@ chmod 777 database/database.sqlite
 
 ## 👨‍💻 Yazar
 
-**Agâh**  
+**Agâh**
 Full-stack geliştirici & siber güvenlik meraklısı
+```
