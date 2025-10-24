@@ -41,53 +41,7 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 <?php $title = "Sefer Detayları"; ?>
 <?php include './includes/head.inc.php'; ?>
 
-<style>
-    /* Koltuk seçimi için basit CSS stilleri */
-    .seat-map {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 10px;
-        max-width: 300px;
-        margin: 20px auto;
-    }
 
-    .seat {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    .corridor {
-        grid-column: 3;
-    }
-
-    .seat.available {
-        background-color: #d4edda;
-        color: #155724;
-        cursor: pointer;
-    }
-
-    .seat.available:hover {
-        background-color: #c3e6cb;
-    }
-
-    .seat.booked {
-        background-color: #f8d7da;
-        color: #721c24;
-        cursor: not-allowed;
-    }
-
-    .seat.selected {
-        background-color: #007bff;
-        color: white;
-        border-color: #0056b3;
-    }
-</style>
 
 <body>
     <?php include './includes/navbar.inc.php'; ?>

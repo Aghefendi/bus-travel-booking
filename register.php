@@ -1,6 +1,7 @@
 <?php
 
 require_once './includes/db.inc.php';
+require_once './includes/secureSession.inc.php';
 
 $error = '';
 

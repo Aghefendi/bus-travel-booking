@@ -1,9 +1,13 @@
+<?php
+require_once './includes/secureSession.inc.php';
+$title = "İletişim";
+include './includes/head.inc.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="tr">
 
-<?php $title = "İletişim"; ?>
-<?php include './includes/head.inc.php'; ?>
-<?php require_once './includes/secureSession.inc.php'; ?>
 
 <body>
 

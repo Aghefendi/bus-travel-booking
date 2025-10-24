@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Company ID al
+
 $userId = $_SESSION['user_id'];
 $stmt = $db->prepare("SELECT company_id FROM User WHERE id = :id");
 $stmt->bindValue(':id', $userId, SQLITE3_INTEGER);

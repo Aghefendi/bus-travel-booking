@@ -62,23 +62,7 @@ if (isset($_GET['company_id'])) {
     </div>
     <?php include "../includes/footer.inc.php"; ?>
 
-    <style>
-        .company-detail-card {
-            background-color: #f9f9f9;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .company-logo-large {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+   
 </body>
 
 </html>

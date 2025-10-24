@@ -112,6 +112,149 @@ textarea.form-field { min-height: 100px; resize: vertical; }
 .search_tabs { height: 94px; }
 .search_tab { font-size: 25px; font-weight: 700; color: #2d2c2c; text-transform: uppercase; text-align: center; height: 10%; flex-grow: 1; background: #FFFFFF; transition: all 200ms ease; }
 p { color: antiquewhite; font-size: 16px; }
+    .seat-map {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        max-width: 300px;
+        margin: 20px auto;
+    }
+
+    .seat {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .corridor {
+        grid-column: 3;
+    }
+
+    .seat.available {
+        background-color: #d4edda;
+        color: #155724;
+        cursor: pointer;
+    }
+
+    .seat.available:hover {
+        background-color: #c3e6cb;
+    }
+
+    .seat.booked {
+        background-color: #f8d7da;
+        color: #721c24;
+        cursor: not-allowed;
+    }
+
+    .seat.selected {
+        background-color: #007bff;
+        color: white;
+        border-color: #0056b3;
+    }
+.company-detail-card {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .company-logo-large {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+   
+    .ticket-card {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: flex;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .ticket-card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .ticket-company {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        border-right: 1px dashed #ccc;
+        min-width: 150px;
+    }
+
+    .ticket-company img {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+
+    .ticket-details {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .trip-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .trip-info h4 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+    .seat-info {
+        text-align: right;
+    }
+
+    .seat-info .seat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .ticket-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+
+    .ticket-status {
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .ticket-status.active {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .ticket-status.canceled {
+        background-color: #f8d7da;
+        color: #721c24;
+    }       
 
  @media (max-width: 900px) {
             .content {
@@ -172,3 +315,4 @@ p { color: antiquewhite; font-size: 16px; }
                 padding: 15px;
             }
         }
+     

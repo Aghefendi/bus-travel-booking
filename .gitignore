@@ -1,5 +1,4 @@
-# SQLite database file
-sqlite.db
+
 
 # PHP session files (if any)
 *.sess

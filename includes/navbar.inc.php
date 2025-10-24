@@ -1,10 +1,3 @@
-<?php
-
-session_start();
-?>
-
-
-
 <nav class="main_nav">
     <div class="container">
         <div class="row">

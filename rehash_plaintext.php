@@ -1,5 +1,7 @@
 <?php
+include './includes/secureSession.inc.php';
 require_once './includes/db.inc.php';
+
 
 
 $stmt = $db->prepare("SELECT id, email, password FROM User");

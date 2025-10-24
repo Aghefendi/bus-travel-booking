@@ -2,8 +2,9 @@
 include './includes/secureSession.inc.php';
 
 
-if ($_SESSION["user_id"]) {
-    header("Location: dashboard.php");
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
     exit();
 }
 switch ($_SESSION["role"]) {
