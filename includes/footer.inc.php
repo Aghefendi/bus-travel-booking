@@ -1,5 +1,3 @@
-
-
 <div class="copyright">
     <div class="container">
         <div class="row">
@@ -10,7 +8,7 @@
                         <script>document.write(new Date().getFullYear());</script> All rights reserved <i
                             class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.google.com"
                             target="_blank">Agah</a>
-                    
+
                     </div>
                 </div>
             </div>
@@ -31,9 +29,10 @@
 
 </div>
 
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="js/custom.js"></script>
+<script src="../assets/js/jquery-3.2.1.min.js"></script>
+<script src="../assets/styles/bootstrap4/popper.js"></script>
+<script src="../assets/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../assets/plugins/easing/easing.js"></script>
+<script src="../assets/js/custom.js"></script>
+<script src="../assets/js/seat.js"></script>

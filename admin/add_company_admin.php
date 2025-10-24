@@ -2,7 +2,6 @@
 require_once '../includes/db.inc.php';
 require_once '../includes/secureSession.inc.php';
 
-
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php?error=unauthorized");
     exit();
@@ -13,37 +12,34 @@ $success_message = '';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $full_name = trim($_POST['full_name']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+    $user_id = (int) $_POST['user_id'];
     $company_id = (int) $_POST['company_id'];
-    $role = 'company.admin';
+    $role = 'company'; 
 
-    if (empty($full_name) || empty($email) || empty($password) || empty($company_id)) {
-        $error_message = "Tüm alanlar zorunludur.";
-    } elseif (strlen($password) < 6) {
-        $error_message = "Parola en az 6 karakter olmalıdır.";
+    if (empty($user_id) || empty($company_id)) {
+        $error_message = "Kullanıcı ve firma seçimi zorunludur.";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+        
         $stmt = $db->prepare('
-            INSERT INTO "User" (full_name, email, password, role, company_id)
-            VALUES (:full_name, :email, :password, :role, :company_id)
+            UPDATE "User" 
+            SET role = :role, company_id = :company_id 
+            WHERE id = :user_id
         ');
-        $stmt->bindValue(':full_name', $full_name, SQLITE3_TEXT);
-        $stmt->bindValue(':email', $email, SQLITE3_TEXT);
-        $stmt->bindValue(':password', $hashed_password, SQLITE3_TEXT);
+
         $stmt->bindValue(':role', $role, SQLITE3_TEXT);
         $stmt->bindValue(':company_id', $company_id, SQLITE3_INTEGER);
+        $stmt->bindValue(':user_id', $user_id, SQLITE3_INTEGER);
 
         if ($stmt->execute()) {
-            $success_message = "Firma admini başarıyla oluşturuldu ve atandı. Listeye yönlendiriliyorsunuz...";
+            $success_message = "Kullanıcı başarıyla firma admini olarak atandı. Listeye yönlendiriliyorsunuz...";
+            
             header("refresh:2;url=manage_users.php");
         } else {
-            $error_message = "Kullanıcı oluşturulamadı. E-posta zaten kullanılıyor olabilir.";
+            $error_message = "Kullanıcı atanamadı. Bir veritabanı hatası oluştu.";
         }
     }
 }
+
 
 $company_stmt = $db->query("SELECT id, name FROM Bus_Company");
 $companies = [];
@@ -51,10 +47,21 @@ while ($row = $company_stmt->fetchArray(SQLITE3_ASSOC)) {
     $companies[] = $row;
 }
 
+
+$user_stmt = $db->query("
+    SELECT id, full_name, email 
+    FROM \"User\" 
+    WHERE (role = 'user' OR role IS NULL) AND company_id IS NULL
+");
+$users = [];
+while ($row = $user_stmt->fetchArray(SQLITE3_ASSOC)) {
+    $users[] = $row;
+}
+
 ?>
 
 <html>
-<?php $title = "Yeni Admin Ekle"; ?>
+<?php $title = "Firma Admini Ata"; ?>
 <?php include "../includes/head.inc.php"; ?>
 
 <body>
@@ -63,7 +70,7 @@ while ($row = $company_stmt->fetchArray(SQLITE3_ASSOC)) {
         <div class="results-container">
             <div class="results-header">
                 <i class="fa-solid fa-user-plus"></i>
-                <h4>Yeni Firma Admini Ekle ve Ata</h4>
+                <h4>Mevcut Kullanıcıyı Firma Admini Olarak Ata</h4>
             </div>
 
             <?php if ($error_message): ?>
@@ -75,18 +82,18 @@ while ($row = $company_stmt->fetchArray(SQLITE3_ASSOC)) {
                 <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
 
                     <div class="form-group">
-                        <label for="full_name">Adı Soyadı:</label>
-                        <input type="text" id="full_name" name="full_name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">E-posta:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Parola:</label>
-                        <input type="password" id="password" name="password" required>
+                        <label for="user_id">Atanacak Kullanıcı:</label>
+                        <select id="user_id" name="user_id" required>
+                            <option value="">-- Kullanıcı Seçin --</option>
+                            <?php foreach ($users as $user): ?>
+                                <option value="<?= htmlspecialchars($user['id']) ?>">
+                                    <?= htmlspecialchars($user['full_name']) ?> (<?= htmlspecialchars($user['email']) ?>)
+                                </option>
+                            <?php endforeach; ?>
+                            <?php if (empty($users)): ?>
+                                <option value="" disabled>Atanacak uygun kullanıcı bulunamadı.</option>
+                            <?php endif; ?>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -103,7 +110,7 @@ while ($row = $company_stmt->fetchArray(SQLITE3_ASSOC)) {
 
                     <div class='button button_color_2'>
                         <div class='button_bcg'></div>
-                        <button type='submit'>Oluştur ve Ata</button>
+                        <button type='submit'>Ata</button>
                     </div>
                 </form>
             <?php endif; ?>

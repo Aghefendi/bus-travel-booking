@@ -29,26 +29,23 @@ if (!$user) {
     <?php include '../includes/navbar.inc.php'; ?>
 
     <div class="container">
-        <h2>Profil Bilgileriniz</h2>
 
-        <table class="table custom-table">
-            <tr>
-                <th>Kullanıcı Adı</th>
-                <td><?= htmlspecialchars($user['full_name']) ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?= htmlspecialchars($user['email']) ?></td>
-            </tr>
+        <div class="company-detail-card" style="text-align: left;">
 
-        </table>
+            <h2 style="text-align: center;">Profil Bilgileriniz</h2>
 
-        <div class="button button_color_2">
-            <div class="button_bcg"></div>
-            <a href="edit_profile.php" class="button-link">Profili Düzenle</a>
+            <table class="table custom-table">
+                <tr class="label1">
+                    <th class="label1">Kullanıcı Adı</th>
+                    <td class="label1"><?= htmlspecialchars($user['full_name']) ?></td>
+                </tr>
+                <tr>
+                    <th class="label1">Email</th>
+                    <td class="label1"><?= htmlspecialchars($user['email']) ?></td>
+                </tr>
+            </table>
         </div>
     </div>
-
     <?php include '../includes/footer.inc.php'; ?>
 </body>
 

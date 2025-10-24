@@ -12,23 +12,57 @@ $company_name = '';
 $company_logo_path = '';
 $error_message = '';
 $success_message = '';
+$upload_dir = '../assets/images';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['company_id'])) {
     $company_id = $_POST['company_id'];
     $company_name = trim($_POST['name']);
+    $new_logo_path = null;
 
     if (empty($company_name)) {
         $error_message = "Firma adı boş bırakılamaz.";
     } else {
-        $stmt = $db->prepare("UPDATE Bus_Company SET name = :name WHERE id = :id");
-        $stmt->bindValue(':name', $company_name, SQLITE3_TEXT);
-        $stmt->bindValue(':id', $company_id, SQLITE3_INTEGER);
 
-        if ($stmt->execute()) {
-            $success_message = "Firma başarıyla güncellendi. Listeye yönlendiriliyorsunuz...";
-            header("refresh:2;url=./admin_dashboard.php");
-        } else {
-            $error_message = "Güncelleme sırasında hata oluştu.";
+
+        if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
+
+
+            $file_name = uniqid() . '-' . basename($_FILES['logo']['name']);
+            $target_file = $upload_dir . $file_name;
+            $image_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+
+            if (in_array($image_type, ['jpg', 'jpeg', 'png', 'gif'])) {
+                if (move_uploaded_file($_FILES['logo']['tmp_name'], $target_file)) {
+                    $new_logo_path = $target_file;
+                } else {
+                    $error_message = "Logo yüklenirken bir hata oluştu.";
+                }
+            } else {
+                $error_message = "Geçersiz dosya formatı. Sadece JPG, PNG, GIF izin verilir.";
+            }
+        }
+
+
+        if (empty($error_message)) {
+            if ($new_logo_path) {
+
+                $stmt = $db->prepare("UPDATE Bus_Company SET name = :name, logo_path = :logo_path WHERE id = :id");
+                $stmt->bindValue(':logo_path', $new_logo_path, SQLITE3_TEXT);
+            } else {
+
+                $stmt = $db->prepare("UPDATE Bus_Company SET name = :name WHERE id = :id");
+            }
+
+            $stmt->bindValue(':name', $company_name, SQLITE3_TEXT);
+            $stmt->bindValue(':id', $company_id, SQLITE3_INTEGER);
+
+            if ($stmt->execute()) {
+                $success_message = "Firma başarıyla güncellendi. Listeye yönlendiriliyorsunuz...";
+                header("refresh:2;url=./admin_dashboard.php");
+            } else {
+                $error_message = "Güncelleme sırasında hata oluştu.";
+            }
         }
     }
 } elseif (isset($_GET['company_id'])) {
@@ -46,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['company_id'])) {
         $company_id = null;
     }
 } else {
-    header("Location: companies.php");
+    header("Location: ./admin_dashboard.php");
     exit();
 }
 ?>
@@ -64,23 +98,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['company_id'])) {
             </div>
 
             <?php if ($error_message): ?>
-                <div class="alert alert-danger"><?= $error_message ?></div><?php endif; ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($error_message) ?></div>
+            <?php endif; ?>
+
             <?php if ($success_message): ?>
-                <div class="alert alert-success"><?= $success_message ?></div><?php endif; ?>
+                <div class="alert alert-success"><?= htmlspecialchars($success_message) ?></div>
+                <script>
+                    setTimeout(function () {
+                        window.location.href = './admin_dashboard.php';
+                    }, 3000); 
+                </script>
+            <?php endif; ?>
 
             <?php if ($company_id && !$success_message): ?>
-                <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+
+                <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" enctype="multipart/form-data">
+
                     <input type="hidden" name="company_id" value="<?= htmlspecialchars($company_id) ?>">
+
                     <div class="form-group">
                         <label for="name">Firma Adı:</label>
                         <input type="text" id="name" class="form-control" name="name"
                             value="<?= htmlspecialchars($company_name) ?>" required>
                     </div>
+
                     <div class="form-group">
                         <label>Mevcut Logo:</label>
-                        <img src="<?= htmlspecialchars($company_logo_path) ?>" alt="Mevcut Logo"
-                            style="width: 150px; border-radius: 5px; margin-top: 10px;">
+                        <?php if ($company_logo_path && file_exists($company_logo_path)): ?>
+                            <img src="<?= htmlspecialchars($company_logo_path) ?>" alt="Mevcut Logo"
+                                style="width: 150px; border-radius: 5px; margin-top: 10px; display: block;">
+                        <?php else: ?>
+                            <p style="margin-top: 10px;">Logo yok.</p>
+                        <?php endif; ?>
                     </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label for="logo">Logoyu Değiştir (İsteğe bağlı):</label>
+                        <input type="file" id="logo" class="form-control" name="logo"
+                            accept="image/png, image/jpeg, image/gif">
+                    </div>
+
                     <div class='button button_color_2'>
                         <div class='button_bcg'></div>
                         <button type='submit'>Güncelle</button>

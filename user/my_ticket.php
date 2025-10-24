@@ -31,7 +31,7 @@ $stmt = $db->prepare('
 ');
 
 $stmt->bindValue(':user_id', $userId, SQLITE3_INTEGER);
-$tickets = $stmt->execute();
+$ticketsResult = $stmt->execute();
 
 ?>
 
@@ -52,66 +52,69 @@ $tickets = $stmt->execute();
             </div>
 
             <?php
-            $hasTickets = false;
-            if ($tickets) {
-             
-                $firstTicket = $tickets->fetchArray(SQLITE3_ASSOC);
-                if ($firstTicket) {
-                    $hasTickets = true;
-                  
-                    do {
-                        ?>
-                        <div class="ticket-card">
-                            <div class="ticket-company">
-                                <img src="<?= htmlspecialchars($firstTicket['logo_path']) ?>"
-                                    alt="<?= htmlspecialchars($firstTicket['company_name']) ?>">
-                                <strong><?= htmlspecialchars($firstTicket['company_name']) ?></strong>
-                            </div>
-                            <div class="ticket-details">
-                                <div class="trip-info">
-                                    <div>
-                                        <h4><?= htmlspecialchars($firstTicket['departure_city']) ?> →
-                                            <?= htmlspecialchars($firstTicket['destination_city']) ?>
-                                        </h4>
-                                        <small><?= date('d F Y, H:i', strtotime($firstTicket['departure_time'])) ?></small>
-                                    </div>
-                                    <div class="seat-info">
-                                        KOLTUK
-                                        <div class="seat-number"><?= htmlspecialchars($firstTicket['seat_number']) ?></div>
-                                    </div>
-                                </div>
-                                <div class="ticket-footer">
-                                    <div class="ticket-status <?= htmlspecialchars($firstTicket['status']) ?>">
-                                        <?= strtoupper(htmlspecialchars($firstTicket['status'])) ?></div>
-                                    <strong>Fiyat: <?= htmlspecialchars($firstTicket['total_price']) ?> ₺</strong>
+            $hasTickets = false; 
+            
+            
+            if ($ticketsResult) {
 
-                                    <?php
-                                    $departureTimestamp = strtotime($firstTicket['departure_time']);
-                                    $nowTimestamp = time();
-                                    $canCancel = ($departureTimestamp - $nowTimestamp) > 3600; // 3600 saniye = 1 saat
-                        
-                                    if ($firstTicket['status'] === 'active' && $canCancel):
-                                        ?>
-                                        <form action="cancel_ticket.php" method="POST"
-                                            onsubmit="return confirm('Bileti iptal etmek istediğinizden emin misiniz?');">
-                                            <input type="hidden" name="ticket_id" value="<?= $firstTicket['ticket_id'] ?>">
-                                            <button type="submit" class="button button_color_danger button-small">İptal Et</button>
-                                        </form>
-                                    <?php endif; ?>
+              
+                while ($ticket = $ticketsResult->fetchArray(SQLITE3_ASSOC)) {
+                    $hasTickets = true; 
+                    ?>
+
+                    <div class="ticket-card">
+                        <div class="ticket-company">
+                            <img src="<?= htmlspecialchars($ticket['logo_path']) ?>"
+                                alt="<?= htmlspecialchars($ticket['company_name']) ?>">
+                            <strong><?= htmlspecialchars($ticket['company_name']) ?></strong>
+                        </div>
+                        <div class="ticket-details">
+                            <div class="trip-info">
+                                <div>
+                                    <h4><?= htmlspecialchars($ticket['departure_city']) ?> →
+                                        <?= htmlspecialchars($ticket['destination_city']) ?>
+                                    </h4>
+                                    <small><?= date('d F Y, H:i', strtotime($ticket['departure_time'])) ?></small>
                                 </div>
+                                <div class="seat-info">
+                                    KOLTUK
+                                    <div class="seat-number"><?= htmlspecialchars($ticket['seat_number']) ?></div>
+                                </div>
+                            </div>
+                            <div class="ticket-footer">
+                                <div class="ticket-status <?= htmlspecialchars($ticket['status']) ?>">
+                                    <?= strtoupper(htmlspecialchars($ticket['status'])) ?>
+                                </div>
+                                <strong>Fiyat: <?= htmlspecialchars($ticket['total_price']) ?> ₺</strong>
+
                                 <?php
-                    } while ($firstTicket = $tickets->fetchArray(SQLITE3_ASSOC));
-                }
+                                $departureTimestamp = strtotime($ticket['departure_time']);
+                                $nowTimestamp = time();
+                              
+                                $canCancel = ($departureTimestamp - $nowTimestamp) > 3600;
+
+                                if ($ticket['status'] === 'active' && $canCancel):
+                                    ?>
+                                    <form action="cancel_ticket.php" method="POST"
+                                        onsubmit="return confirm('Bileti iptal etmek istediğinizden emin misiniz?');">
+                                        <input type="hidden" name="ticket_id" value="<?= $ticket['ticket_id'] ?>">
+                                        <button type="submit" class="button button_color_danger button-small">İptal Et</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div> <?php
+                } 
             }
 
+       
             if (!$hasTickets) {
-                echo "<p>Henüz satın alınmış bir biletiniz bulunmamaktadır.</p>";
+                echo "<p style='color: #000; text-align: center; padding: 20px;'>Henüz satın alınmış bir biletiniz bulunmamaktadır.</p>";
             }
             ?>
-                </div>
-            </div>
 
-            <?php include '../includes/footer.inc.php'; ?>
+        </div>
+    </div> <?php include '../includes/footer.inc.php'; ?>
 </body>
 
 </html>

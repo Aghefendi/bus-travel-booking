@@ -52,7 +52,7 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
                 <i class="fa-solid fa-bus-simple"></i>
                 <h4>Sefer Detayları ve Koltuk Seçimi</h4>
             </div>
-
+                
             <h3><?= htmlspecialchars($trip['departure_city']) ?> -> <?= htmlspecialchars($trip['destination_city']) ?>
             </h3>
             <p><strong>Tarih:</strong> <?= date('d/m/Y H:i', strtotime($trip['departure_time'])) ?></p>
@@ -93,34 +93,7 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 
     <?php include './includes/footer.inc.php'; ?>
 
-    <script>
-        const seatMap = document.querySelector('.seat-map');
-        const selectedSeatInput = document.getElementById('selectedSeat');
-        const buyButton = document.getElementById('buyButton');
-        const selectionMessage = document.getElementById('selectionMessage');
-
-        seatMap.addEventListener('click', function (e) {
-            
-            if (e.target.classList.contains('available')) {
-           
-                const currentlySelected = seatMap.querySelector('.selected');
-                if (currentlySelected) {
-                    currentlySelected.classList.remove('selected');
-                }
-
-                
-                e.target.classList.add('selected');
-                const seatNumber = e.target.dataset.seatNumber;
-
-               
-                selectedSeatInput.value = seatNumber;
-
-              
-                buyButton.disabled = false;
-                selectionMessage.style.display = 'none';
-            }
-        });
-    </script>
+   
 </body>
 
 </html>

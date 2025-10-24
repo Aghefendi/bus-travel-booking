@@ -171,6 +171,15 @@ p { color: antiquewhite; font-size: 16px; }
             margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+  .company-detail-card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .company-detail-card p {
+            color: #555;
+            line-height: 1.6;
+        }      
 
    
     .ticket-card {
@@ -197,6 +206,7 @@ p { color: antiquewhite; font-size: 16px; }
         background-color: #f8f9fa;
         border-right: 1px dashed #ccc;
         min-width: 150px;
+        color: #000;
     }
 
     .ticket-company img {
@@ -219,6 +229,12 @@ p { color: antiquewhite; font-size: 16px; }
     .trip-info h4 {
         margin: 0;
         font-size: 1.5em;
+        color: #000;
+    }
+    .trip-info small{
+         margin: 0;
+        font-size: 1.5em;
+        color: #000;
     }
 
     .seat-info {
@@ -255,6 +271,14 @@ p { color: antiquewhite; font-size: 16px; }
         background-color: #f8d7da;
         color: #721c24;
     }       
+    .results-container h3 {
+
+color: #000;
+    }
+     .results-container p{
+
+        color: #000;
+     }
 
  @media (max-width: 900px) {
             .content {
